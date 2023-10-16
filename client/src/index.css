@@ -8,16 +8,16 @@
 /* font-family: 'Playfair Display', serif; */
 /* font-family: 'Poppins', sans-serif; */
 
-/* CSS FOR NAVBAR */
+/* ====================== CSS FOR NAVBAR ========================================== */
 
-.navbar{
+.navbar {
   font-family: 'Poppins', sans-serif;
-  font-size: 17px;
-  line-height: 26px;
+  font-size: 16px; 
+  line-height: 1.5;
   text-transform: uppercase;
-  box-shadow:  0 8px 6px -6px gray;
-  --webkit-box-shadow: 0 8px 6px -6px gray;
-  border-bottom: 0.3px solid gray !important; 
+  border: none; 
+  background-color: #ffffff !important; 
+  padding: 10px 20px; 
 }
 
 .nav-link {
@@ -25,21 +25,25 @@
 }
 
 .active{
-  border-bottom: 1px solid black;
+  color: black;
+  font-weight: 370 !important;
+
+
 }
 
 .navbar-brand{
   font-weight: 700;
-  font-family: 'roboto', sans-serif;
+  font-family: 'Playfair Display', serif;;
   letter-spacing: 3px;
+  font-size: 25px;
 }
 
-/* FOOTER CSS */
+/*================================ FOOTER CSS ======================================== */
 
 .footer{
-  color:white;
+  color:black;
   padding:25px;
-  background: #000000;
+  background: white;
   background: -webkit-linear-gradient(
     to right,
     #434343,
@@ -50,11 +54,16 @@
 
 .footer a {
   text-decoration: none;
-  color:white;
+  color:#434343;
   padding:10px;
 }
 
+.footer-brand{
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 3px;
+}
+
 .footer a:hover{
-  color:#ffefba;
+  color:#000000;
   border-bottom: 1px solid #ffefba;
 }

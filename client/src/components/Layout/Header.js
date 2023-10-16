@@ -20,7 +20,7 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <Link to="/" className="navbar-brand">
-              <GiCrystalEarrings /> Fleur Necessities
+              Fleur Necessities
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
@@ -30,11 +30,7 @@ const Header = () => {
               </li>
 
               <li className="nav-item">
-                <NavLink
-                  to="/category"
-                  className="nav-link"
-                  aria-current="page"
-                >
+                <NavLink to="/category" className="nav-link">
                   Category
                 </NavLink>
               </li>
