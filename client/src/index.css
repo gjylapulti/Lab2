@@ -31,6 +31,7 @@
 
 .nav-link {
   font-weight: 300 !important;
+  color: black;
 }
 
 .active{
@@ -44,6 +45,35 @@
   font-family: 'Playfair Display', serif;;
   letter-spacing: 3px;
   font-size: 20px;
+}
+
+/* CSS */
+.dropdown-menu {
+  border: none; 
+}
+
+.dropdown-menu {
+  border: none;
+  box-shadow: none; 
+
+}
+
+.dropdown-item {
+  font-weight: 300 !important;
+}
+
+.nav-link,
+.dropdown-item {
+  font-weight: 300 !important;
+  transition: background-color 0.3s;
+
+  
+  background-color: transparent;
+  border-radius: 10px; 
+
+  &:hover {
+    background-color: rgba(255, 204, 204, 0.5);
+  }
 }
 
 
