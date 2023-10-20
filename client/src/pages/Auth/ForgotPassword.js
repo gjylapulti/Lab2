@@ -1,38 +1,31 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
-import { useAuth } from "../../context/auth";
 
-const Login = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [auth, setAuth] = useAuth();
+  const [newPassword, setNewPassword] = useState("");
+  const [answer, setAnswer] = useState("");
+
   const navigate = useNavigate();
-  const location = useLocation();
 
   //form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/login", {
+      const res = await axios.post("/api/v1/auth/forgot-password", {
         email,
-        password,
+        newPassword,
+        answer,
       });
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
-        setAuth({
-          ...auth,
-          user: res.data.user,
-          token: res.data.token,
-        });
-
-        localStorage.setItem("auth", JSON.stringify(res.data));
 
         setTimeout(() => {
-          navigate(location.state || "/");
+          navigate("/login");
         }, 1800); // Delay in milliseconds (e.g., 2000ms = 2 seconds)
       } else {
         toast.error(res.data.message);
@@ -43,10 +36,10 @@ const Login = () => {
     }
   };
   return (
-    <Layout title="Fleur Necessities - LogIn">
+    <Layout title={"Forgot Password - Fleur"}>
       <div className="  register">
         <h1 className="text-center" style={{ fontSize: "29px" }}>
-          Log In
+          Reset Password
         </h1>
         <div className="pink-lines">
           <div className="line"></div>
@@ -63,31 +56,26 @@ const Login = () => {
               required
             />
           </div>
-
           <div className="mb-3">
             <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              type="text"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
               className="form-control"
-              placeholder="Enter Your Password"
+              placeholder="Enter Your Favorite Sport"
               required
             />
           </div>
 
           <div className="mb-3">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/forgot-password");
-              }}
-              className="btn btn-pink w-100"
-              style={{
-                background: "pink",
-              }}
-            >
-              Forgot Password ?
-            </button>
+            <input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              className="form-control"
+              placeholder="Enter Your Password"
+              required
+            />
           </div>
 
           <button
@@ -97,7 +85,7 @@ const Login = () => {
               background: "pink",
             }}
           >
-            Login
+            Reset
           </button>
         </form>
       </div>
@@ -105,4 +93,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
