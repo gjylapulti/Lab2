@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./../components/Layout/Layout";
-
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Checkbox, Radio } from "antd";
-import { Prices } from "../components/Routes/Prices";
+import { Prices } from "../components/Routes/Prices.js";
 const HomePage = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
@@ -101,25 +102,26 @@ const HomePage = () => {
   };
   return (
     <Layout title={"ALl Products - Best offers "}>
-      <div className="container-fluid row mt-3">
-        <div className="col-md-2">
-          <h4 className="text-center">Filter By Category</h4>
+      <div className="container-fluid row mt-4 ms-2">
+        <div className="col-md-2 ">
+          <h5 className="text-left mt-4">Filter By Category</h5>
           <div className="d-flex flex-column">
             {categories?.map((c) => (
               <Checkbox
                 key={c._id}
                 onChange={(e) => handleFilter(e.target.checked, c._id)}
+                style={{ marginBottom: "5px" }}
               >
                 {c.name}
               </Checkbox>
             ))}
           </div>
           {/* price filter */}
-          <h4 className="text-center mt-4">Filter By Price</h4>
+          <h5 className="text-left mt-4">Filter By Price</h5>
           <div className="d-flex flex-column">
             <Radio.Group onChange={(e) => setRadio(e.target.value)}>
               {Prices?.map((p) => (
-                <div key={p._id}>
+                <div key={p._id} style={{ marginBottom: "5px" }}>
                   <Radio value={p.array}>{p.name}</Radio>
                 </div>
               ))}
@@ -127,45 +129,67 @@ const HomePage = () => {
           </div>
           <div className="d-flex flex-column">
             <button
-              className="btn btn-danger"
+              className="btn-pink mt-4 "
+              style={{ width: "150px", padding: "4px" }}
               onClick={() => window.location.reload()}
             >
               RESET FILTERS
             </button>
           </div>
         </div>
-        <div className="col-md-9">
-          <h1 className="text-center">All Products</h1>
-          <div className="d-flex flex-wrap">
+        <div className="col-md-9 offset-1">
+          <div className="d-flex flex-wrap mt-4">
             {products?.map((p) => (
-              <div className="card m-2" style={{ width: "18rem" }}>
+              <div className="m-2" style={{ width: "18rem" }} key={p._id}>
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
                   alt={p.name}
                 />
                 <div className="card-body">
-                  <h5 className="card-title">{p.name}</h5>
+                  <h5 className="card-title" style={{ marginTop: "10px" }}>
+                    {p.name}
+                  </h5>
                   <p className="card-text">
                     {p.description.substring(0, 30)}...
                   </p>
-                  <p className="card-text"> $ {p.price}</p>
-                  <button class="btn btn-primary ms-1">More Details</button>
-                  <button class="btn btn-secondary ms-1">ADD TO CART</button>
+                  <h5 className="card-text"> € {p.price}</h5>
+                  <button
+                    className="btn  ms-1"
+                    style={{
+                      backgroundColor: "#696868",
+                      color: "white",
+                      marginBottom: "15px",
+                    }}
+                    onClick={() => navigate(`/product/${p.slug}`)}
+                  >
+                    More Details
+                  </button>
+                  <button
+                    className="btn ms-1"
+                    style={{
+                      backgroundColor: "#B76E79",
+                      color: "white",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    ADD TO CART
+                  </button>
                 </div>
               </div>
             ))}
           </div>
-          <div className="m-2 p-3">
+          <div className=" p-3">
             {products && products.length < total && (
               <button
-                className="btn btn-warning"
+                className="btn-pink"
+                style={{ padding: "10px" }}
                 onClick={(e) => {
                   e.preventDefault();
                   setPage(page + 1);
                 }}
               >
-                {loading ? "Loading ..." : "Loadmore"}
+                {loading ? "Loading ..." : "Load More"}
               </button>
             )}
           </div>

@@ -24,13 +24,15 @@ const Products = () => {
   }, []);
   return (
     <Layout>
-      <div className="row">
+      <div className="row mt-3">
         <div className="col-md-3">
           <AdminMenu />
         </div>
         <div className="col-md-9 ">
-          <h1 className="text-center">All Products List</h1>
-          <div className="d-flex">
+          <h4 className="text-left " style={{ marginLeft: "10px" }}>
+            All Products
+          </h4>
+          <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <Link
                 key={p._id}
@@ -45,7 +47,8 @@ const Products = () => {
                   />
                   <div className="card-body">
                     <h5 className="card-title">{p.name}</h5>
-                    <p className="card-text">{p.description}</p>
+                    <p className="card-text">{p.price} €</p>
+                    <p className="card-text">In Stock: {p.quantity} </p>
                   </div>
                 </div>
               </Link>

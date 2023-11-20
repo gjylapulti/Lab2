@@ -5,13 +5,13 @@ import AdminMenu from "../../components/Layout/AdminMenu";
 const Users = () => {
   return (
     <Layout title={"Dashboard - All Users"}>
-      <div className="container-fluid m-3 p-3">
+      <div className="container-fluid m-3 p-3 ">
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <h1>All Users</h1>
+            <h4 style={{ marginLeft: "10px" }}>All Users</h4>
           </div>
         </div>
       </div>
