@@ -4,8 +4,13 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Routes/Prices.js";
+import { useCart } from "../context/cart";
+import toast from "react-hot-toast";
+
 const HomePage = () => {
   const navigate = useNavigate();
+  const [cart, setCart] = useCart();
+
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
@@ -140,7 +145,15 @@ const HomePage = () => {
         <div className="col-md-9 offset-1">
           <div className="d-flex flex-wrap mt-4">
             {products?.map((p) => (
-              <div className="m-2" style={{ width: "18rem" }} key={p._id}>
+              <div
+                className=""
+                style={{
+                  width: "18rem",
+                  marginRight: "50px",
+                  marginBottom: "20px",
+                }}
+                key={p._id}
+              >
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
@@ -159,7 +172,7 @@ const HomePage = () => {
                     style={{
                       backgroundColor: "#696868",
                       color: "white",
-                      marginBottom: "15px",
+                      marginBottom: "10px",
                     }}
                     onClick={() => navigate(`/product/${p.slug}`)}
                   >
@@ -171,6 +184,14 @@ const HomePage = () => {
                       backgroundColor: "#B76E79",
                       color: "white",
                       marginBottom: "10px",
+                    }}
+                    onClick={() => {
+                      setCart([...cart, p]);
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, p])
+                      );
+                      toast.success("Item Added to cart");
                     }}
                   >
                     ADD TO CART
