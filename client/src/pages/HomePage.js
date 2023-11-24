@@ -145,15 +145,7 @@ const HomePage = () => {
         <div className="col-md-9 offset-1">
           <div className="d-flex flex-wrap mt-4">
             {products?.map((p) => (
-              <div
-                className=""
-                style={{
-                  width: "18rem",
-                  marginRight: "50px",
-                  marginBottom: "20px",
-                }}
-                key={p._id}
-              >
+              <div className="content" key={p._id}>
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
@@ -168,23 +160,13 @@ const HomePage = () => {
                   </p>
                   <h5 className="card-text"> € {p.price}</h5>
                   <button
-                    className="btn  ms-1"
-                    style={{
-                      backgroundColor: "#696868",
-                      color: "white",
-                      marginBottom: "10px",
-                    }}
+                    className="btn  ms-1 moredetailsbtn"
                     onClick={() => navigate(`/product/${p.slug}`)}
                   >
                     More Details
                   </button>
                   <button
-                    className="btn ms-1"
-                    style={{
-                      backgroundColor: "#B76E79",
-                      color: "white",
-                      marginBottom: "10px",
-                    }}
+                    className="btn ms-1 addtocartbtn"
                     onClick={() => {
                       setCart([...cart, p]);
                       localStorage.setItem(

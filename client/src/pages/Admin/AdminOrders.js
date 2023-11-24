@@ -49,14 +49,16 @@ const AdminOrders = () => {
           <AdminMenu />
         </div>
         <div className="col-md-9">
-          <h1 className="text-center">All Orders</h1>
+          <h4 className="text-left " style={{ marginLeft: "10px" }}>
+            All Orders
+          </h4>
           {orders?.map((o, i) => {
             return (
-              <div className="border shadow">
-                <table className="table">
+              <div className="order">
+                <table className="table custom-table">
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
+                      <th scope="col">No</th>
                       <th scope="col">Status</th>
                       <th scope="col">Buyer</th>
                       <th scope="col"> date</th>
@@ -87,16 +89,16 @@ const AdminOrders = () => {
                     </tr>
                   </tbody>
                 </table>
-                <div className="container">
+                <div className="container " style={{ marginTop: "0" }}>
                   {o?.products?.map((p, i) => (
-                    <div className="row mb-2 p-3 card flex-row" key={p._id}>
-                      <div className="col-md-4">
+                    <div className="row mb-2 p-3  flex-row" key={p._id}>
+                      <div className="col-md-3 col-sm-8 text-left">
                         <img
                           src={`/api/v1/product/product-photo/${p._id}`}
                           className="card-img-top"
                           alt={p.name}
                           width="100px"
-                          height={"100px"}
+                          height="200px"
                         />
                       </div>
                       <div className="col-md-8">

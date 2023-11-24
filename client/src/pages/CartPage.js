@@ -24,7 +24,7 @@ const CartPage = () => {
       });
       return total.toLocaleString("en-US", {
         style: "currency",
-        currency: "USD",
+        currency: "EUR",
       });
     } catch (error) {
       console.log(error);
@@ -80,46 +80,52 @@ const CartPage = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <h1 className="text-center bg-light p-2 mb-1">
+            <h1 className="text-center bg-light p-2 mb-1 mt-3">
               {`Hello ${auth?.token && auth?.user?.name}`}
             </h1>
-            <h4 className="text-center">
+            <p className="text-center">
               {cart?.length
-                ? `You Have ${cart.length} items in your cart ${
-                    auth?.token ? "" : "please login to checkout"
+                ? `You have ${cart.length} items in Your Cart ${
+                    auth?.token ? "" : "Please login to checkout"
                   }`
                 : " Your Cart Is Empty"}
-            </h4>
+            </p>
           </div>
         </div>
         <div className="row">
           <div className="col-md-8">
             {cart?.map((p) => (
-              <div className="row mb-2 p-3 card flex-row" key={p._id}>
+              <div className="row mb-2 p-3  flex-row" key={p._id}>
                 <div className="col-md-4">
                   <img
                     src={`/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
-                    width="100px"
-                    height={"100px"}
+                    width="150px"
+                    height={"300px"}
                   />
                 </div>
                 <div className="col-md-8">
-                  <p>{p.name}</p>
-                  <p>{p.description.substring(0, 30)}</p>
-                  <p>Price : {p.price}</p>
+                  <h2 className="p-name">{p.name}</h2>
+                  <p className="p-price">Price : {p.price} €</p>
                   <button
-                    className="btn btn-danger"
+                    className="btn moredetailsbtn"
+                    style={{ backgroundColor: "#DC4C64" }}
                     onClick={() => removeCartItem(p._id)}
                   >
                     Remove
+                  </button>
+                  <button
+                    className="btn ms-1 moredetailsbtn"
+                    onClick={() => navigate(`/product/${p.slug}`)}
+                  >
+                    More Details
                   </button>
                 </div>
               </div>
             ))}
           </div>
-          <div className="col-md-4 text-center">
+          <div className=" text-center mt-4">
             <h2>Cart Summary</h2>
             <p>Total | Checkout | Payment</p>
             <hr />
@@ -160,7 +166,7 @@ const CartPage = () => {
                 )}
               </div>
             )}
-            <div className="mt-2">
+            <div className="mt-2  col-md-6 mx-auto">
               {!clientToken || !cart?.length ? (
                 ""
               ) : (

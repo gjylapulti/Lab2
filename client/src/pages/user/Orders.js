@@ -28,11 +28,13 @@ const Orders = () => {
             <UserMenu />
           </div>
           <div className="col-md-9">
-            <h1 className="text-center">All Orders</h1>
+            <h4 className="text-left " style={{ marginLeft: "10px" }}>
+              All Orders
+            </h4>
             {orders?.map((o, i) => {
               return (
-                <div className="border shadow">
-                  <table className="table">
+                <div className="order">
+                  <table className="table custom-table">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
@@ -56,14 +58,14 @@ const Orders = () => {
                   </table>
                   <div className="container">
                     {o?.products?.map((p, i) => (
-                      <div className="row mb-2 p-3 card flex-row" key={p._id}>
+                      <div className="row mb-2 p-3  flex-row" key={p._id}>
                         <div className="col-md-4">
                           <img
                             src={`/api/v1/product/product-photo/${p._id}`}
                             className="card-img-top"
                             alt={p.name}
                             width="100px"
-                            height={"100px"}
+                            height={"200px"}
                           />
                         </div>
                         <div className="col-md-8">
