@@ -263,3 +263,16 @@ export const orderStatusController = async (req, res) => {
     });
   }
 };
+
+// Controller to get all users
+export const getAllUsersController = async (req, res) => {
+  try {
+    // Fetch all users from the database
+    const users = await userModel.find({}).select("-password");
+
+    res.status(200).json(users);
+  } catch (error) {
+    console.error("Error getting all users:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
