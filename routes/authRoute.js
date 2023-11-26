@@ -12,6 +12,7 @@ import {
 } from "../controllers/authController.js";
 
 import { isAdmin, requireSignIn } from "./../middlewares/authMiddleware.js";
+import { getSalesOverviewController } from "./../controllers/salesController.js";
 
 //router object
 const router = express.Router();
@@ -58,5 +59,12 @@ router.put(
 
 //get all users
 router.get("/all-users", requireSignIn, isAdmin, getAllUsersController);
+
+router.get(
+  "/sales-overview",
+  requireSignIn,
+  isAdmin,
+  getSalesOverviewController
+);
 
 export default router;
